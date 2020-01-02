@@ -14,6 +14,9 @@
 		<li><a href="/Step02_Request/detail?num=1">자세히 보기1</a></li>
 		<li><a href="/Step02_Request/detail?num=2">자세히 보기2</a></li>
 		<li><a href="/Step02_Request/detail?num=3">자세히 보기3</a></li>
+		<li><a href="/Step02_Request/detail.jsp?num=1">자세히 보기1 (jsp)</a></li>
+		<li><a href="/Step02_Request/detail.jsp?num=2">자세히 보기2 (jsp)</a></li>
+		<li><a href="/Step02_Request/detail.jsp?num=3">자세히 보기3 (jsp)</a></li>
 	</ul>
 </div>
 </body>
