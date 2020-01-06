@@ -57,7 +57,29 @@ public class MemberDao {
 		}
 		return list;
 	}
+	//회원 한명의 정보 추가 
+	public boolean insert(MemberDto dto) {
+		return false;
+	}
+	//회원 한명의 정보 수정
+	public boolean update(MemberDto dto) {
+		return false;
+	}
+	//회원 한명의 정보 삭제
+	public boolean delete(int num) {
+		return false;
+	}
+	//회원 한명의 정보 리턴
+	public MemberDto getData(int num) {
+		return null;
+	}
 }
+
+
+
+
+
+
 
 
 

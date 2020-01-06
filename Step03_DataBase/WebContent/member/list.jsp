@@ -19,12 +19,14 @@
 <body>
 <div class="container">
 	<h1>회원 목록 입니다.</h1>
-	<table>
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>번호</th>
 				<th>이름</th>
 				<th>주소</th>
+				<th>수정 하러 가기</th>
+				<th>삭제</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,10 +35,13 @@
 				<td><%=tmp.getNum() %></td>
 				<td><%=tmp.getName() %></td>
 				<td><%=tmp.getAddr() %></td>
+				<td><a href="updateform.jsp?num=<%=tmp.getNum() %>">수정</a></td>
+				<td><a href="delete.jsp?num=<%=tmp.getNum() %>">삭제</a></td>
 			</tr>
 		<%} %>
 		</tbody>
 	</table>
+	<a href="insertform.jsp">회원추가 하러가기</a>
 </div>
 </body>
 </html>
