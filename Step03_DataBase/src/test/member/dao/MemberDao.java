@@ -59,7 +59,35 @@ public class MemberDao {
 	}
 	//회원 한명의 정보 추가 
 	public boolean insert(MemberDto dto) {
-		return false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "INSERT INTO member"
+					+ " (num, name, addr)"
+					+ " VALUES(member_seq.NEXTVAL, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 하기
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getAddr());
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	//회원 한명의 정보 수정
 	public boolean update(MemberDto dto) {
