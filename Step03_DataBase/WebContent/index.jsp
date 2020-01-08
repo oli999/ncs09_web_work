@@ -12,16 +12,32 @@
 		padding-top: 50px;
 	}
 </style>
+<!-- jquery + bootstrap javascript 로딩 -->
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
-		<a class="navbar-brand" href="${pageContext.request.contextPath }/index.jsp">Acorn</a>
-		<ul class="nav navbar-nav">
-			<li><a href="${pageContext.request.contextPath }/member/list.jsp">회원관리</a></li>
-			<li><a href="${pageContext.request.contextPath }/todo/list.jsp">할일목록</a></li>
-			<li><a href="#">쇼핑</a></li>
-		</ul>
+		<!-- 홈페이지 링크와 버튼을 넣어둘 div -->
+		<div class="navbar-header">
+			<a class="navbar-brand" href="${pageContext.request.contextPath }/index.jsp">Acorn</a>
+			<button class="navbar-toggle" 
+				data-toggle="collapse" 
+				data-target="#one">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<!-- xs 영역에서는 숨겨졌다가 버튼을 누르면 나오게 할 컨텐츠를 넣을 div -->
+		<div class="collapse navbar-collapse" id="one">
+			<ul class="nav navbar-nav">
+				<li><a href="${pageContext.request.contextPath }/member/list.jsp">회원관리</a></li>
+				<li><a href="${pageContext.request.contextPath }/todo/list.jsp">할일목록</a></li>
+				<li><a href="#">쇼핑</a></li>
+			</ul>
+		</div>
 	</div>
 </div>
 <div class="container">
