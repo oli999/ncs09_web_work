@@ -7,6 +7,16 @@ package test.todo.dao;
  *  2. 자신의 참조값을 담을 static 필드 선언
  *  3. 자신의 참조값을 리턴해주는 public static 메소드 제공
  */
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import test.todo.dto.TodoDto;
+import test.util.DbcpBean;
+
 public class TodoDao {
 	//2. 
 	private static TodoDao dao;
@@ -20,7 +30,84 @@ public class TodoDao {
 		}
 		return dao;
 	}
+	//할일을 DB 에 저장하기
+	public boolean insert(String content) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "INSERT INTO todo"
+					+ " (num, content, regdate)"
+					+ " VALUES(todo_seq.NEXTVAL, ?, SYSDATE)";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 하기
+			pstmt.setString(1, content);
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	//할일 목록 리턴하기
+	public List<TodoDto> getList(){
+		List<TodoDto> list=new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "SELECT num,content,regdate"
+					+ " FROM todo"
+					+ " ORDER BY num ASC";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				TodoDto dto=new TodoDto();
+				dto.setNum(rs.getInt("num"));
+				dto.setContent(rs.getString("content"));
+				dto.setRegdate(rs.getString("regdate"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				//connection pool 에 반납하기 
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
 }
+
+
+
+
+
+
+
 
 
 
