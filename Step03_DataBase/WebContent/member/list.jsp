@@ -28,7 +28,7 @@
 		<a class="navbar-brand" href="${pageContext.request.contextPath }/index.jsp">Acorn</a>
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="${pageContext.request.contextPath }/member/list.jsp">회원관리</a></li>
-			<li><a href="#">게임</a></li>
+			<li><a href="${pageContext.request.contextPath }/todo/list.jsp">할일목록</a></li>
 			<li><a href="#">쇼핑</a></li>
 		</ul>
 	</div>

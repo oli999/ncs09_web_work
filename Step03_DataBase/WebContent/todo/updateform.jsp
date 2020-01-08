@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>/todo/updateform.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
+<style>
+	body{
+		padding-top: 50px;
+	}
+</style>
 </head>
 <body>
 <%
@@ -16,17 +22,36 @@
 	TodoDto dto=TodoDao.getInstance().getData(num);
 	//3. 수정폼을 응답한다. 
 %>
-<h1>할일 수정 양식 입니다.</h1>
-<p> 할일 번호 : <strong><%=dto.getNum() %></strong></p>
-<p> 등록일 : <strong><%=dto.getRegdate() %></strong></p>
-<form action="update.jsp" method="post">
-	<%-- 할일 수정할때 필요한 번호를 폼 전송할때 같이 전송 되도록 --%>
-	<input type="hidden" name="num" value="<%=dto.getNum() %>" />
-	<label for="content">할일</label>
-	<input type="text" id="content" name="content" 
-		value="<%=dto.getContent()%>"/>
-	<button type="submit">수정 확인</button>
-</form>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<a class="navbar-brand" href="${pageContext.request.contextPath }/index.jsp">Acorn</a>
+		<ul class="nav navbar-nav">
+			<li><a href="${pageContext.request.contextPath }/member/list.jsp">회원관리</a></li>
+			<li class="active"><a href="${pageContext.request.contextPath }/todo/list.jsp">할일목록</a></li>
+			<li><a href="#">쇼핑</a></li>
+		</ul>
+	</div>
+</div>
+<div class="container">
+	<ol class="breadcrumb">
+		<li><a href="list.jsp">목록</a></li>
+		<li>수정 양식</li>
+	</ol>
+	<h1>할일 수정 양식 입니다.</h1>
+	<p> 할일 번호 : <strong><%=dto.getNum() %></strong></p>
+	<p> 등록일 : <strong><%=dto.getRegdate() %></strong></p>
+	<form action="update.jsp" method="post">
+		<%-- 할일 수정할때 필요한 번호를 폼 전송할때 같이 전송 되도록 --%>
+		<input type="hidden" name="num" value="<%=dto.getNum() %>" />
+		<div class="form-group">
+			<label for="content">할일</label>
+			<input class="form-control" type="text" id="content" name="content" 
+			value="<%=dto.getContent()%>"/>
+		</div>
+		<button class="btn btn-primary" type="submit">수정 확인</button>
+		<button class="btn btn-warning">취소</button>
+	</form>
+</div>
 </body>
 </html>
 
