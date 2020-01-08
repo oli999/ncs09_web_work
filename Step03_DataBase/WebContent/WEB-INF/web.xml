@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
   <display-name>Step03_DataBase</display-name>
+  <!-- 프로젝트의 최상위 경로 요청에 대해 응답할 파일 목록 -->
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -10,6 +11,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <!-- jdbc/myoracle 이라는 이름의 Datasource(Connection) 설정 -->
   <resource-ref>
   	 <description>Oracle Datasource example</description>
 	 <res-ref-name>jdbc/myoracle</res-ref-name>

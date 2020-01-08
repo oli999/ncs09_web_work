@@ -52,6 +52,7 @@ public class MemberDao {
 				if(rs!=null)rs.close();
 				if(pstmt!=null)pstmt.close();
 				//connection pool 에 반납하기 
+				//.close() 메소드를 호출하면 자동 반납된다.
 				if(conn!=null)conn.close(); 
 			}catch(Exception e) {}
 		}
