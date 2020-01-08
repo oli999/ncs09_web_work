@@ -6,6 +6,7 @@
 	request.setCharacterEncoding("utf-8");
 	//1. 폼 전송되는 수정할 todo 번호와 내용을 읽어온다.
 	int num=Integer.parseInt(request.getParameter("num"));
+	String seq=request.getParameter("seq");
 	String content=request.getParameter("content");
 	//2. DB 에 수정 반영
 	TodoDto dto=new TodoDto();
@@ -23,7 +24,7 @@
 <body>
 <%if(isSuccess){ %>
 	<script>
-		alert("<%=dto.getNum()%> 번 할일이 수정 되었습니다.");
+		alert("<%=seq%> 번 할일이 수정 되었습니다.");
 		location.href="list.jsp";
 	</script>
 <%}else{ %>
