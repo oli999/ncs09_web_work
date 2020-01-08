@@ -13,11 +13,7 @@
 <meta charset="UTF-8">
 <title>/todo/list.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
-<style>
-	body{
-		padding-top: 50px;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -60,6 +56,7 @@
 	</table>
 <a href="insertform.jsp">할일 추가하기</a>
 </div>
+<jsp:include page="../include/footer.jsp"></jsp:include>
 <script>
 	function deleteConfirm(num){
 		var isDelete=confirm(num+" 번 todo 를 삭제 하시겠습니까?");

@@ -6,11 +6,7 @@
 <meta charset="UTF-8">
 <title>/todo/insertform.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
-<style>
-	body{
-		padding-top: 50px;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -35,6 +31,7 @@
 		<button class="btn btn-primary" type="submit">등록</button>
 	</form>
 </div>
+<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
 

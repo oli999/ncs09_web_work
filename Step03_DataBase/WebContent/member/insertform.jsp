@@ -6,12 +6,7 @@
 <meta charset="UTF-8">
 <title>/member/insertform.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
-<style>
-	/* navbar 가 상단에 고정(fixed) 되어 있기 때문에 공간이 남는다. */
-	body{
-		padding-top: 50px;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,6 +38,7 @@
 		<button class="btn btn-primary" type="submit">추가</button>
 	</form>
 </div>
+<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
 

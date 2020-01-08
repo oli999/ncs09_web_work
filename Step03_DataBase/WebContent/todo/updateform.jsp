@@ -8,11 +8,7 @@
 <meta charset="UTF-8">
 <title>/todo/updateform.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
-<style>
-	body{
-		padding-top: 50px;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
 </head>
 <body>
 <%
@@ -52,6 +48,7 @@
 		<button class="btn btn-warning">취소</button>
 	</form>
 </div>
+<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
 
