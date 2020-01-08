@@ -43,8 +43,19 @@
 				<td><%=tmp.getNum() %></td>
 				<td><%=tmp.getContent() %></td>
 				<td><%=tmp.getRegdate() %></td>
-				<td><a href="updateform.jsp?num=<%=tmp.getNum()%>">수정</a></td>
-				<td><a href="javascript:deleteConfirm(<%=tmp.getNum() %>)">삭제</a></td>
+				<td>
+					<a href="updateform.jsp?num=<%=tmp.getNum() %>">
+						<!-- 스크린 리더기를 위한 기능 text 제공하기  -->
+						<span class="sr-only">수정 하러 가기</span>
+						<span class="glyphicon glyphicon-edit"></span>
+					</a>
+				</td>
+				<td>
+					<a href="javascript:deleteConfirm(<%=tmp.getNum() %>)">
+						<span class="sr-only">삭제하기</span>
+						<span class="glyphicon glyphicon-trash"></span>
+					</a>
+				</td>
 			</tr>
 		<%} %>
 		</tbody>
