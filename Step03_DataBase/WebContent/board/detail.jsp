@@ -46,6 +46,7 @@
 		<input type="password" name="pwd" placeholder="비밀번호..." />
 		<button type="submit">삭제</button>
 	</form>
+	<a href="updateform.jsp?num=<%=dto.getNum()%>">수정</a>
 </div>
 </body>
 </html>
