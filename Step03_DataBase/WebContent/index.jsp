@@ -20,6 +20,7 @@
 	<ul>
 		<li><a href="member/list.jsp">회원 목록보기(member table)</a></li>
 		<li><a href="todo/list.jsp">할일목록(todo table)</a></li>
+		<li><a href="board/list.jsp">게시판(board_free table)</a></li>
 	</ul>
 </div>
 <%-- 
