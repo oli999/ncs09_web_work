@@ -40,9 +40,24 @@
 			<td><%=dto.getRegdate() %></td>
 		</tr>
 	</table>
+	<!-- 삭제 기능을 수행할 폼 -->
+	<form action="delete.jsp" method="post">
+		<input type="hidden" name="num" value="<%=dto.getNum() %>" />
+		<input type="password" name="pwd" placeholder="비밀번호..." />
+		<button type="submit">삭제</button>
+	</form>
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 
