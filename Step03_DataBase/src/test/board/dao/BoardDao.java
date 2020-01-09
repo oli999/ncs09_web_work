@@ -123,7 +123,7 @@ public class BoardDao {
 		ResultSet rs = null;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT writer,title,content,pwd,regdate"
+			String sql = "SELECT writer,title,content,pwd,TO_CHAR(regdate, 'YY.MM.DD HH24:MI' ) AS regdate"
 					+ " FROM board_free"
 					+ " WHERE num=?";
 			pstmt = conn.prepareStatement(sql);
@@ -162,7 +162,7 @@ public class BoardDao {
 		ResultSet rs = null;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT num,writer,title,pwd,regdate"
+			String sql = "SELECT num,writer,title,pwd,TO_CHAR(regdate, 'YY.MM.DD HH24:MI' ) AS regdate"
 					+ " FROM board_free"
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
