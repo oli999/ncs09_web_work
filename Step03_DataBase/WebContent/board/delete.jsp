@@ -20,15 +20,22 @@
 <head>
 <meta charset="UTF-8">
 <title>/board/delete.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
 </head>
 <body>
 <div class="container">
+	<h1>Alert!</h1>
 	<%if(isSuccess){ %>
-		<p><%=num %> 번 글을 삭제 했습니다.</p>
-		<a href="list.jsp">확인</a>
+		<p class="alert alert-success">
+			<strong><%=num %></strong> 번 글을 삭제 했습니다.
+			<a class="alert-link" href="list.jsp">확인</a>
+		</p>
 	<%}else{ %>
-		<p>삭제 실패!</p>
-		<a href="detail.jsp?num=<%=num %>">돌아가기</a>
+		<p class="alert alert-danger">
+			삭제 실패 했습니다.
+			<a class="alert-link" href="detail.jsp?num=<%=num %>">돌아가기</a>
+		</p>
 	<%} %>
 </div>
 </body>

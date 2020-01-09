@@ -14,37 +14,52 @@
 <head>
 <meta charset="UTF-8">
 <title>/board/updateform.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 </head>
 <body>
+<jsp:include page="../include/navbar.jsp">
+	<jsp:param value="board" name="category"/>
+</jsp:include>
 <div class="container">
+	<ol class="breadcrumb">
+		<li><a href="list.jsp">목록</a></li>
+		<li>글 수정 폼</li>
+	</ol>
 	<h1>글정보 수정 폼 입니다.</h1>
-	<p>글번호 : <strong><%=dto.getNum() %></strong></p>
 	<form action="update.jsp" method="post">
+		<div class="form-group">
+			<label for="num">글번호</label>
+			<input class="form-control" type="text" value="<%=dto.getNum()%>"/>
+		</div>
 		<input type="hidden" name="num" value="<%=dto.getNum() %>" />
-		<div>
+		<div class="form-group">
 			<label for="writer">작성자</label>
-			<input type="text" name="writer" id="writer"
+			<input class="form-control" type="text" name="writer" id="writer"
 			 	value="<%=dto.getWriter()%>"/>
 		</div>
-		<div>
+		<div class="form-group">
 			<label for="title">제목</label>
-			<input type="text" name="title" id="title"
+			<input class="form-control" type="text" name="title" id="title"
 				value="<%=dto.getTitle() %>"/>
 		</div>
-		<div>
+		<div class="form-group">
 			<label for="content">내용</label>
-			<textarea name="content" id="content" 
+			<textarea class="form-control" name="content" id="content" 
 			cols="30" rows="10"><%=dto.getContent() %></textarea>
 		</div>
-		<div>
+		<div class="form-group">
 			<label for="pwd">비밀번호</label>
-			<input type="password" name="pwd" id="pwd"
+			<input class="form-control" type="password" name="pwd" id="pwd"
 				placeholder="저장된 비밀번호 입력..."/>
 		</div>
-		<button  type="submit">수정확인</button>
-		<button  type="reset">취소</button>
+		<button class="btn btn-primary"  type="submit">수정확인</button>
+		<button class="btn btn-warning" type="reset">취소</button>
 	</form>
 </div>
+<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
 

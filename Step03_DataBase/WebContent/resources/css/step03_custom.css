@@ -3,6 +3,9 @@
 	body{
 		padding-top: 50px;
 	}
+	.breadcrumb{
+		margin-top: 10px;
+	}
 	.footer-bs {
 	    background-color: #3c3d41;
 		padding: 60px 40px;

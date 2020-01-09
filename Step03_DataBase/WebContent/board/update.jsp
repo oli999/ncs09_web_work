@@ -31,15 +31,22 @@
 <head>
 <meta charset="UTF-8">
 <title>/board/update.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
 </head>
 <body>
 <div class="container">
+	<h1>Alert!</h1>
 	<%if(isSuccess){ %>
-		<p><%=num %> 번 글을 수정했습니다.</p>
-		<a href="list.jsp">확인</a>
+		<p class="alert alert-success">
+			<strong><%=num %></strong> 번 글을 수정 했습니다.
+			<a class="alert-link" href="list.jsp">확인</a>
+		</p>
 	<%}else{ %>
-		<p>수정 실패! 비밀번호를 확인 하세요.</p>
-		<a href="updateform.jsp?num=<%=num %>">다시 시도</a>
+		<p class="alert alert-danger">
+			수정 실패! 비밀번호를 확인 하세요.
+			<a class="alert-link" href="updateform.jsp?num=<%=num %>">다시 시도</a>
+		</p>
 	<%} %>
 </div>
 </body>

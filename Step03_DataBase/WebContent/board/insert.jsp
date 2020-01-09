@@ -23,17 +23,24 @@
 <head>
 <meta charset="UTF-8">
 <title>/board/insert.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
 </head>
 <body>
-<%if(isSuccess){%>
-	<script>
-		alert("<%=writer%> 님이 작성한 글을 저장하였습니다.");
-		location.href="list.jsp";
-	</script>
-<%}else{ %>
-	<p>새글 저장이 실패 했습니다.</p>
-	<a href="insertform.jsp">다시 작성하러 가기</a>
-<%} %>
+<div class="container">
+	<h1>alert!</h1>
+	<%if(isSuccess){%>
+		<script>
+			alert("<%=writer%> 님이 작성한 글을 저장하였습니다.");
+			location.href="list.jsp";
+		</script>
+	<%}else{ %>
+		<p class="alert alert-danger">
+			새글 저장이 실패 했습니다.
+			<a class="alert-link" href="insertform.jsp">다시 작성하기</a>
+		</p>
+	<%} %>
+</div>
 </body>
 </html>
 
