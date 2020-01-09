@@ -36,6 +36,7 @@
 		<%} %>	
 		</tbody>
 	</table>
+	<a href="insertform.jsp">새글 추가 하러 가기</a>
 </div>
 </body>
 </html>
