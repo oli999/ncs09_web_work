@@ -9,7 +9,8 @@
 <body>
 <h1>리다일렉트 이동 테스트 home</h1>
 <ul>
-	<li><a href="game.jsp">게임하러 가기</a></li>
+	<li><a href="game.jsp">게임하러 가기(jsp)</a></li>
+	<li><a href="game">게임하러 가기(서블릿)</a></li>
 </ul>
 </body>
 </html>
