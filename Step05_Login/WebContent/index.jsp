@@ -11,6 +11,7 @@
 	<h1>인덱스 페이지 입니다.</h1>
 	<ul>
 		<li><a href="users/signup_form.jsp">회원가입</a></li>
+		<li><a href="users/loginform.jsp">로그인</a></li>
 	</ul>
 </div>
 </body>
