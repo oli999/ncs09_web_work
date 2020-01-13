@@ -16,6 +16,39 @@ public class UsersDao {
 		}
 		return dao;
 	}
+	//비밀번호를 수정반영하는 메소드
+	public boolean updatePwd(UsersDto dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "UPDATE users"
+					+ " SET pwd=?"
+					+ " WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 하기
+			pstmt.setString(1, dto.getPwd());
+			pstmt.setString(2, dto.getId());
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//인자로 전달되는 회원정보를(이메일) DB 에 수정반영하는 메소드
 	public boolean update(UsersDto dto) {
 		Connection conn = null;
