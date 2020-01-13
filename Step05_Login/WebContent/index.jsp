@@ -20,7 +20,9 @@
 		</ul>
 	<%}else{ %>
 		<p> 
-			<strong><%=id %></strong> 님 로그인중...
+			<strong>
+				<a href="${pageContext.request.contextPath }/users/private/info.jsp"><%=id %></a>
+			</strong> 님 로그인중...
 			<a href="users/logout.jsp">로그아웃</a>
 		</p>
 	<%} %>
