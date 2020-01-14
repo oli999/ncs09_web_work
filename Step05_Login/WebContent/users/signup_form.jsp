@@ -22,29 +22,93 @@
 		<div class="form-group has-feedback">
 			<label class="control-label" for="id">아이디</label>
 			<input class="form-control" type="text" id="id" name="id"/>
-			<p class="help-block" id="msg_notuse">사용 불가능한 아이디 입니다.</p>
+			<p class="help-block" id="id_notusable">사용 불가능한 아이디 입니다.</p>
+			<p class="help-block" id="id_required">반드시 입력 하세요</p>
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 			<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 		</div>
-		<div>
-			<label for="pwd">비밀번호</label>
-			<input type="password" id="pwd" name="pwd"/>
+		<div class="form-group has-feedback">
+			<label class="control-label" for="pwd">비밀번호</label>
+			<input class="form-control" type="password" id="pwd" name="pwd"/>
+			<p class="help-block" id="pwd_required">반드시 입력하세요</p>
+			<p class="help-block" id="pwd_notequal">아래의 확인란과 동일하게 입력하세요</p>
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 		</div>
-		<div>
-			<label for="pwd2">비밀번호 확인</label>
-			<input type="password" id="pwd2" name="pwd2"/>
+		<div class="form-group">
+			<label class="control-label" for="pwd2">비밀번호 확인</label>
+			<input class="form-control" type="password" id="pwd2" name="pwd2"/>
 		</div>
-		<div>
-			<label for="email">이메일</label>
-			<input type="email" id="email" name="email" />
+		<div class="form-group has-feedback">
+			<label class="control-label" for="email">이메일</label>
+			<input class="form-control" type="email" id="email" name="email" />
+			<p class="help-block" id="email_notmatch">이메일 형식에 맞게 입력하세요</p>
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 		</div>
-		<button type="submit">가입</button>
-		<button type="reset">취소</button>
+		<button disabled="disabled" class="btn btn-primary" type="submit">가입</button>
+		<button class="btn btn-warning" type="reset">취소</button>
 	</form>
 </div>
 <script>
-	//아이디 유효성 여부
-	var isIdValid=false;
+	//아이디를 사용할수 있는지 여부 
+	var isIdUsable=false;
+	//아이디를 입력 했는지 여부 
+	var isIdInput=false;
+	
+	//비밀번호를 확인란과 같게 입력 했는지 여부 
+	var isPwdEqual=false;
+	//비밀번호를 입력했는지 여부 
+	var isPwdInput=false;
+	
+	//이메일을 형식에 맞게 입력했는지 여부 
+	var isEmailMatch=false;
+	//이메일을 입력했는지 여부
+	var isEmailInput=false;
+	
+	//이메일을 입력할때 실행할 함수 등록
+	$("#email").on("input", function(){
+		var email=$("#email").val();
+		
+		if(email.match("@")){//이메일 형식에 맞게 입력 했다면
+			isEmailMatch=true;
+		}else{//형식에 맞지 않게 입력했다면 
+			isEmailMatch=false;
+		}
+		
+		if(email.length == 0){ //이메일을 입력하지 않았다면
+			isEmailInput=false;
+		}else{//이메일을 입력 했다면 
+			isEmailInput=true;
+		}
+		//이메일 에러 여부 
+		var isError=isEmailInput && !isEmailMatch;
+		//이메일 상태 바꾸기 
+		setState("#email", isError);
+	});
+	
+	//비밀번호를 입력할때 실행할 함수 등록
+	$("#pwd, #pwd2").on("input", function(){
+		//입력한 비밀번호를 읽어온다.
+		var pwd=$("#pwd").val();
+		var pwd2=$("#pwd2").val();
+		
+		if(pwd != pwd2){//두 비밀번호를 동일하게 입력하지 않았다면
+			isPwdEqual=false;
+		}else{
+			isPwdEqual=true;
+		}
+		//isPwdEqual = pwd != pwd2 ? false : true;
+		if(pwd.length == 0){
+			isPwdInput=false;
+		}else{
+			isPwdInput=true;
+		}
+		//비밀번호 에러 여부 
+		var isError=!isPwdEqual || !isPwdInput;
+		//비밀번호 상태 바꾸기 
+		setState("#pwd", isError);
+	});
 
 	//아이디를 입력할때 실행할 함수 등록 
 	$("#id").on("input", function(){
@@ -56,70 +120,82 @@
 			method:"GET",
 			data:{inputId:inputId},
 			success:function(responseData){
-				//일단 초기화 시켜 놓고 
-				$("#id")
-				.parent()
-				.removeClass("has-success has-error")
-				.find(".form-control-feedback")
-				.hide();
-				
-				if(responseData.isExist){//아이디가 이미 존재하는 경우 (사용불가)
-					//색상을 빨간색으로 
-					$("#id")
-					.parent()
-					.addClass("has-error")
-					.find(".glyphicon-remove")
-					.show();
-					//에러메세지 보이게 
-					$("#msg_notuse").show();
-					//상태 바꾸기 
-					isIdValid=false;
-				}else{//아닌경우(사용가능)
-					$("#id")
-					.parent()
-					.addClass("has-success")
-					.find(".glyphicon-ok")
-					.show();
-					$("#msg_notuse").hide();
-					isIdValid=true;
+				if(responseData.isExist){//이미 존재하는 아이디라면 
+					isIdUsable=false;
+				}else{
+					isIdUsable=true;
 				}
+				//아이디 에러 여부 
+				var isError= !isIdUsable || !isIdInput ;
+				//아이디 상태 바꾸기 
+				setState("#id", isError );
 			}
 		});
+		//아이디를 입력했는지 검증
+		if(inputId.length == 0){//만일 입력하지 않았다면 
+			isIdInput=false;
+		}else{
+			isIdInput=true;
+		}
+		//아이디 에러 여부 
+		var isError= !isIdUsable || !isIdInput ;
+		//아이디 상태 바꾸기 
+		setState("#id", isError );
 	});
 	
-	//폼에 제출 이벤트가 발생했을때 실행할 함수 등록
-	$("#signupForm").on("submit", function(){
-		//폼의 유효성 검증을 하고 만일 통과를 못하면 폼 제출을 막는다.
+	//입력란의 상태를 바꾸는 함수 
+	function setState(sel, isError){
+		//일단 UI 를 초기 상태로 바꿔준다.
+		$(sel)
+		.parent()
+		.removeClass("has-success has-error")
+		.find(".help-block, .form-control-feedback")
+		.hide();
 		
-		//1. 아이디 유효성 검증
-		if(!isIdValid){
-			//잘못된 메세지를 띄우고 
-			alert("아이디 중복확인을 하세요!");
-			//잘못된 곳을 바로 입력할수 있도록 포커스 주기
-			$("#id").focus();
-			return false; //폼 제출 막기
+		//입력란의 색상과 아이콘을 바꿔주는 작업 
+		if(isError){
+			//입력란이 error 인 상태
+			$(sel)
+			.parent()
+			.addClass("has-error")
+			.find(".glyphicon-remove")
+			.show();
+		}else{
+			//입력란이 success 인 상태
+			$(sel)
+			.parent()
+			.addClass("has-success")
+			.find(".glyphicon-ok")
+			.show();
+		}
+		//에러가 있다면 에러 메세지 띄우기
+		if(isEmailInput && !isEmailMatch){
+			$("#email_notmatch").show();
+		}
+		//에러가 있다면 에러 메세지 띄우기
+		if(!isPwdEqual){
+			$("#pwd_notequal").show();
+		}
+		if(!isPwdInput){
+			$("#pwd_required").show();
+		}
+		//에러가 있다면 에러 메세지 띄우기
+		if(!isIdUsable){
+			$("#id_notusable").show();
+		}
+		if(!isIdInput){
+			$("#id_required").show();
 		}
 		
-		//2. 비밀번호 유효성 검증
-		var pwd=$("#pwd").val();
-		var pwd2=$("#pwd2").val();
-		if(pwd != pwd2){
-			alert("비밀번호를 확인 하세요!");
-			$("#pwd").focus();
-			return false;
+		//버튼의 상태 바꾸기 
+		if(isIdUsable && isIdInput && isPwdEqual && 
+				isPwdInput && (!isEmailInput || isEmailMatch) ){
+			$("button[type=submit]").removeAttr("disabled");
+		}else{
+			$("button[type=submit]").attr("disabled","disabled");
 		}
-		
-		//3. 이메일 유효성 검증 
-		var email=$("#email").val();
-		// @ 가 포함 되어 있는지 확인한다 만일 포함되어 있지 않으면 null 이 리턴된다.
-		var emailValid=email.match("@");
-		if(emailValid == null){
-			alert("이메일 형식에 맞게 입력하세요!");
-			$("#email").focus();
-			return false;
-		}
-		
-	});
+	}
+	
 </script>
 </body>
 </html>
