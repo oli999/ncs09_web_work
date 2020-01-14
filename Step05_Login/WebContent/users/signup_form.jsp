@@ -66,6 +66,11 @@
 	//이메일을 입력했는지 여부
 	var isEmailInput=false;
 	
+	//아이디 입력란에 한번이라도 입력한 적이 있는지 여부
+	var isIdDirty=false;
+	//비밀 번호 입력란에 한번이라도 입력한 적이 있는지 여부
+	var isPwdDirty=false;
+	
 	//이메일을 입력할때 실행할 함수 등록
 	$("#email").on("input", function(){
 		var email=$("#email").val();
@@ -89,6 +94,9 @@
 	
 	//비밀번호를 입력할때 실행할 함수 등록
 	$("#pwd, #pwd2").on("input", function(){
+		//상태값을 바꿔준다. 
+		isPwdDirty=true;
+		
 		//입력한 비밀번호를 읽어온다.
 		var pwd=$("#pwd").val();
 		var pwd2=$("#pwd2").val();
@@ -112,6 +120,8 @@
 
 	//아이디를 입력할때 실행할 함수 등록 
 	$("#id").on("input", function(){
+		isIdDirty=true;
+		
 		//1. 입력한 아이디를 읽어온다.
 		var inputId=$("#id").val();
 		//2. 서버에 보내서 사용가능 여부를 응답 받는다.
@@ -173,17 +183,17 @@
 			$("#email_notmatch").show();
 		}
 		//에러가 있다면 에러 메세지 띄우기
-		if(!isPwdEqual){
+		if(!isPwdEqual && isPwdDirty){
 			$("#pwd_notequal").show();
 		}
-		if(!isPwdInput){
+		if(!isPwdInput && isPwdDirty){
 			$("#pwd_required").show();
 		}
 		//에러가 있다면 에러 메세지 띄우기
-		if(!isIdUsable){
+		if(!isIdUsable && isIdDirty){
 			$("#id_notusable").show();
 		}
-		if(!isIdInput){
+		if(!isIdInput && isIdDirty){
 			$("#id_required").show();
 		}
 		
