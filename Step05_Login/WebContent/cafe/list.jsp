@@ -16,6 +16,7 @@
 	//2. 글 목록을 응답한다.
 %>
 <div class="container">
+	<a href="private/insertform.jsp">새글 작성</a>
 	<h1>글 목록 입니다.</h1>
 	<table>
 		<thead>
