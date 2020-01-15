@@ -18,6 +18,40 @@ public class CafeDao {
 		}
 		return dao;
 	}
+	//글 정보를 수정하는 메소드
+	public boolean update(CafeDto dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "UPDATE board_cafe"
+					+ " SET title=?, content=?"
+					+ " WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 하기
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setInt(3, dto.getNum());
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//글 조회수 1 증가 시키는 메소드
 	public boolean addViewCount(int num) {
 		Connection conn = null;
