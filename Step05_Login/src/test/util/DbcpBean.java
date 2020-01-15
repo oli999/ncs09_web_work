@@ -17,7 +17,7 @@ public class DbcpBean {
 			DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
 			//Connection pool 에서 Connection 객체 하나 가져오기!
 			conn = ds.getConnection();
-			System.out.println("Connection 얻어오기 성공!");
+			//System.out.println("Connection 얻어오기 성공!");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
