@@ -23,6 +23,9 @@
 		color: #f00;
 		font-weight: bold;
 	}
+	.page-display ul li.muted a{
+		color: #cecece;
+	}
 </style>
 </head>
 <body>
@@ -95,6 +98,15 @@
 	</table>
 	<div class="page-display">
 		<ul>
+			<%if(startPageNum != 1){ %>
+				<li>
+					<a href="list.jsp?pageNum=<%=startPageNum-1 %>">&laquo;</a>
+				</li>
+			<%}else{ %>
+				<li class="muted">
+					<a href="javascript:">&laquo;</a>
+				</li>
+			<%} %>
 			<%for(int i=startPageNum; i<=endPageNum; i++){ %>
 				<%if(i == pageNum){ %>
 					<li class="active">
@@ -105,6 +117,15 @@
 						<a href="list.jsp?pageNum=<%=i %>"><%=i %></a>
 					</li>
 				<%} %>
+			<%} %>
+			<%if(endPageNum < totalPageCount){ %>
+				<li>
+					<a href="list.jsp?pageNum=<%=endPageNum+1 %>">&raquo;</a>
+				</li>
+			<%}else{ %>
+				<li class="muted">
+					<a href="javascript:">&raquo;</a>
+				</li>
 			<%} %>
 		</ul>
 	</div>
