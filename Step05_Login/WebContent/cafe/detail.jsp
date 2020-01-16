@@ -16,18 +16,30 @@
 <head>
 <meta charset="UTF-8">
 <title>/cafe/detail.jsp</title>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 <style>
 	/* 글 내용을 출력할 div 에 적용할 css */
-	.contents{
+	.contents, table{
 		width: 100%;
 		border: 1px dotted #cecece;
+		box-shadow: 3px 3px 5px 6px #ccc;
 	}
 </style>
 </head>
 <body>
+<jsp:include page="../include/navbar.jsp">
+	<jsp:param value="cafe" name="category"/>
+</jsp:include>
 <div class="container">
-	<h1>글 상세 페이지</h1>
-	<table>
+	<ol class="breadcrumb">
+		<li><a href="list.jsp">목록</a></li>
+		<li>글 상세 보기</li>
+	</ol>
+	<table class="table table-bordered table-condensed">
+		<colgroup>
+			<col class="col-xs-3"/>
+			<col class="col-xs-9"/>
+		</colgroup>
 		<tr>
 			<th>글번호</th>
 			<td><%=dto.getNum() %></td>
