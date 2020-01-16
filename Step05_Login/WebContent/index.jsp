@@ -10,22 +10,13 @@
 <head>
 <meta charset="UTF-8">
 <title>index.jsp</title>
+<%-- include/resource.jsp 를 include 하기 --%>
+<jsp:include page="include/resource.jsp"></jsp:include>
 </head>
 <body>
+<%-- include/navbar.jsp 를 include 하기 --%>
+<jsp:include page="include/navbar.jsp"></jsp:include>
 <div class="container">
-	<%if(id == null){ %>
-		<ul>
-			<li><a href="users/signup_form.jsp">회원가입</a></li>
-			<li><a href="users/loginform.jsp">로그인</a></li>
-		</ul>
-	<%}else{ %>
-		<p> 
-			<strong>
-				<a href="${pageContext.request.contextPath }/users/private/info.jsp"><%=id %></a>
-			</strong> 님 로그인중...
-			<a href="users/logout.jsp">로그아웃</a>
-		</p>
-	<%} %>
 	<h1>인덱스 페이지 입니다.</h1>
 	<ul>
 		<li><a href="shop/buy.jsp?num=1&name=coffee">1번 상품 구입하기</a></li>
