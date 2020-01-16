@@ -8,25 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/cafe/list.jsp</title>
-<style>
-	.page-display ul li{
-		float: left;
-		list-style-type: none;
-		margin-right: 10px;
-	}
-	.page-display ul li a{
-		text-decoration: none;
-		color: #000;
-	}
-	.page-display ul li.active a{
-		text-decoration: underline;
-		color: #f00;
-		font-weight: bold;
-	}
-	.page-display ul li.muted a{
-		color: #cecece;
-	}
-</style>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 </head>
 <body>
 <%
@@ -71,10 +53,22 @@
 	List<CafeDto> list=CafeDao.getInstance().getList(dto);
 	//2. 글 목록을 응답한다.
 %>
+<jsp:include page="../include/navbar.jsp">
+	<jsp:param value="cafe" name="category"/>
+</jsp:include>
 <div class="container">
-	<a href="private/insertform.jsp">새글 작성</a>
+	<ol class="breadcrumb">
+		<li><a href="list.jsp">목록</a></li>
+	</ol>
 	<h1>글 목록 입니다.</h1>
-	<table>
+	<table class="table table-striped table-condensed">
+		<colgroup>
+			<col class="col-xs-1"/>
+			<col class="col-xs-2"/>
+			<col class="col-xs-5"/>
+			<col class="col-xs-1"/>
+			<col class="col-xs-3"/>
+		</colgroup>
 		<thead>
 			<tr>
 				<th>글번호</th>
@@ -100,14 +94,17 @@
 		<%} %>
 		</tbody>
 	</table>
+	
+	<a href="private/insertform.jsp">새글 작성</a>
+	
 	<div class="page-display">
-		<ul>
+		<ul class="pagination pagination-sm">
 			<%if(startPageNum != 1){ %>
 				<li>
 					<a href="list.jsp?pageNum=<%=startPageNum-1 %>">&laquo;</a>
 				</li>
 			<%}else{ %>
-				<li class="muted">
+				<li class="disabled">
 					<a href="javascript:">&laquo;</a>
 				</li>
 			<%} %>
@@ -127,7 +124,7 @@
 					<a href="list.jsp?pageNum=<%=endPageNum+1 %>">&raquo;</a>
 				</li>
 			<%}else{ %>
-				<li class="muted">
+				<li class="disabled">
 					<a href="javascript:">&raquo;</a>
 				</li>
 			<%} %>
