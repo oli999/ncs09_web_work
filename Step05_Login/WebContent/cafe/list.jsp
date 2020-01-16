@@ -58,7 +58,7 @@
 </jsp:include>
 <div class="container">
 	<ol class="breadcrumb">
-		<li><a href="list.jsp">목록</a></li>
+		<li><a href="${pageContext.request.contextPath }/cafe/list.jsp">목록</a></li>
 	</ol>
 	<h1>글 목록 입니다.</h1>
 	<table class="table table-striped table-condensed">

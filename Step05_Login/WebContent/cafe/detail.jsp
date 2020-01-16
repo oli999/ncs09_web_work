@@ -32,7 +32,7 @@
 </jsp:include>
 <div class="container">
 	<ol class="breadcrumb">
-		<li><a href="list.jsp">목록</a></li>
+		<li><a href="${pageContext.request.contextPath }/cafe/list.jsp">목록</a></li>
 		<li>글 상세 보기</li>
 	</ol>
 	<table class="table table-bordered table-condensed">
