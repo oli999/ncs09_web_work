@@ -9,10 +9,12 @@ public class FileDto {
 	private long fileSize;
 	private int downCount;
 	private String regdate;
+	private int startRowNum;
+	private int endRowNum;
 	//디폴트 생성자 
 	public FileDto() {}
 	public FileDto(int num, String writer, String title, String orgFileName, String saveFileName, long fileSize,
-			int downCount, String regdate) {
+			int downCount, String regdate, int startRowNum, int endRowNum) {
 		super();
 		this.num = num;
 		this.writer = writer;
@@ -22,6 +24,8 @@ public class FileDto {
 		this.fileSize = fileSize;
 		this.downCount = downCount;
 		this.regdate = regdate;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 	}
 	public int getNum() {
 		return num;
@@ -71,8 +75,25 @@ public class FileDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}	
+	
 	
 }
+
+
+
+
 
 
 
