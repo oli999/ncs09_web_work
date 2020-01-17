@@ -21,7 +21,7 @@
 </jsp:include>
 <div class="container">
 	<h1>파일 목록 입니다.</h1>
-	<table>
+	<table class="table table-striped table-condensed">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -39,7 +39,11 @@
 				<td><%=tmp.getNum() %></td>
 				<td><%=tmp.getWriter() %></td>
 				<td><%=tmp.getTitle() %></td>
-				<td><%=tmp.getOrgFileName() %></td>
+				<td>
+					<a href="download.jsp?num=<%=tmp.getNum() %>">
+						<%=tmp.getOrgFileName() %>
+					</a>
+				</td>
 				<td><%=tmp.getFileSize() %></td>
 				<td><%=tmp.getDownCount() %></td>
 				<td><%=tmp.getRegdate() %></td>
