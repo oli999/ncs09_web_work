@@ -66,9 +66,9 @@
 		<input type="hidden" name="url" value="<%=url %>" />
 		<h2 class="form-signin-heading">로그인 정보 입력</h2>
 		<label for="id" class="sr-only">아이디</label>
-		<input type="text" id="id" class="form-control" placeholder="아이디"/>
+		<input type="text" id="id" name="id" class="form-control" placeholder="아이디"/>
 		<label for="pwd" class="sr-only">비밀번호</label>
-		<input type="password" id="pwd" class="form-control" placeholder="비밀번호">
+		<input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호">
 		<div class="checkbox">
 			<label>
 				<input type="checkbox"/>아이디, 비밀번호 저장
