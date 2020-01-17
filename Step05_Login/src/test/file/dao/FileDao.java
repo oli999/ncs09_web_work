@@ -18,6 +18,43 @@ public class FileDao {
 		}
 		return dao;
 	}
+	//업로드된 파일의 정보를 DB 에 저장하는 메소드
+	public boolean insert(FileDto dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "INSERT INTO board_file"
+					+ " (num,writer,title,orgFileName,saveFileName,"
+					+ " fileSize,regdate)"
+					+ " VALUES(board_file_seq.NEXTVAL,?,?,?,?,?,SYSDATE)";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 하기
+			pstmt.setString(1, dto.getWriter());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getOrgFileName());
+			pstmt.setString(4, dto.getSaveFileName());
+			pstmt.setLong(5, dto.getFileSize());
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//파일 목록을 리턴하는 메소드
 	public List<FileDto> getList(){
 		List<FileDto> list=new ArrayList<>();
