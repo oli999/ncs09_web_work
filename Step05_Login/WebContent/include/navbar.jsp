@@ -27,6 +27,7 @@
 		<div class="collapse navbar-collapse" id="one">
 			<ul class="nav navbar-nav">
 				<li <%if(category.equals("cafe")){%>class="active"<%}%>><a href="${pageContext.request.contextPath }/cafe/list.jsp">Cafe</a></li>
+				<li <%if(category.equals("file")){%>class="active"<%}%>><a href="${pageContext.request.contextPath }/file/list.jsp">자료실</a></li>
 				<li><a href="#">Shop</a></li>		
 			</ul>
 			<%if(id==null){ %>
