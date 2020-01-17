@@ -47,6 +47,7 @@
 		<%} %>	
 		</tbody>
 	</table>
+	<a href="private/upload_form.jsp">파일 업로드</a>
 </div>
 </body>
 
