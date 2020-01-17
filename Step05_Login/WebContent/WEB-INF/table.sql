@@ -15,6 +15,17 @@ CREATE TABLE board_cafe(
 
 CREATE SEQUENCE board_cafe_seq;
 
+CREATE TABLE board_file(
+num NUMBER PRIMARY KEY,
+writer VARCHAR2(100),
+title VARCHAR2(100) NOT NULL,
+orgFileName VARCHAR2(100) NOT NULL, -- 원본 파일명
+saveFileName VARCHAR2(100) NOT NULL, -- 파일 시스템에 실제 저장된 파일명
+fileSize NUMBER, -- 파일의 크기 (byte)
+downCount NUMBER DEFAULT 0, -- 다운로드 횟수 
+regdate DATE
+);
+CREATE SEQUENCE board_file_seq;
 
 
 
