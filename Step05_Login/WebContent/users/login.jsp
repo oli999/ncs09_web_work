@@ -25,6 +25,23 @@
 		//로그인 되었다는 의미에서 session 에 "id" 라는 키값으로 아이디를 저장한다.
 		session.setAttribute("id", id);
 	}
+	
+	//4. 아이디 비밀번호 저장 체크박스를 체크 했는지 읽어와 본다.
+	String isSave=request.getParameter("isSave");
+	//아이디, 비밀번호를 쿠키에 저장
+	Cookie idCook=new Cookie("savedId", id);
+	Cookie pwdCook=new Cookie("savedPwd", pwd);
+	if(isSave != null){ // null 이 아니면 체크 한 것이다.
+		//한달 동안 저장하기
+		idCook.setMaxAge(60*60*24*30);
+		pwdCook.setMaxAge(60*60*24*30);
+	}else{
+		//쿠키 지우기 
+		idCook.setMaxAge(0);
+		pwdCook.setMaxAge(0);
+	}
+	response.addCookie(idCook);
+	response.addCookie(pwdCook);
 %>    
 <!DOCTYPE html>
 <html>
