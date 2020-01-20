@@ -25,6 +25,7 @@
 		<li><a href="file/list.jsp">파일 목록보기</a></li>
 		<li><a href="cook/test1.jsp">쿠키 테스트</a></li>
 		<li><a href="cook/test2.jsp">쿠키 테스트2</a></li>
+		<li><a href="popup/parent.html">팝업 테스트</a></li>
 	</ul>
 </div>
 </body>

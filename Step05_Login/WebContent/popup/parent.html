@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>/popup/parent.html</title>
+</head>
+<body>
+<h3>팝업 테스트 페이지</h3>
+<input type="text" id="addr" placeholder="주소 입력..."/>
+<button onclick="showPopup();">팝업창 띄우기</button>
+<script>
+	function showPopup(){
+		window.open("child.html","test","width=400,height=300,top=100,left=100");
+	}
+	function gura(){
+		alert("gura!");
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
