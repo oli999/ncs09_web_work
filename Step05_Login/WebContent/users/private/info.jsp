@@ -41,7 +41,7 @@
 			<td>
 				<a href="javascript:" id="profileLink">
 					<%if(dto.getProfile()==null){ %>
-						<img src="${pageContext.request.contextPath }/resources/images/kim1.png"/>
+						<img src="${pageContext.request.contextPath }/resources/images/default_user.jpeg"/>
 					<%}else{ %>
 						<img src="${pageContext.request.contextPath }<%=dto.getProfile()%>"/>
 					<%} %>

@@ -8,7 +8,10 @@
 	String pwd=request.getParameter("pwd");
 	String email=request.getParameter("email");
 	//2. DB 에 저장하고
-	UsersDto dto=new UsersDto(id, pwd, email, null);
+	UsersDto dto=new UsersDto();
+	dto.setId(id);
+	dto.setPwd(pwd);
+	dto.setEmail(email);
 	boolean isSuccess=UsersDao.getInstance().insert(dto);
 	//3. 응답하기 
 %>
