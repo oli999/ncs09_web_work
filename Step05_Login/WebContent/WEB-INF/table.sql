@@ -27,7 +27,7 @@ regdate DATE
 );
 CREATE SEQUENCE board_file_seq;
 
-
+ALTER TABLE users ADD(profile VARCHAR2(50));
 
 
 
