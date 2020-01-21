@@ -2,6 +2,7 @@
 <%@page import="test.cafe.dto.CafeDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	//1. GET 방식 파라미터로 전달되는 글번호를 읽어온다.
 	int num=Integer.parseInt(request.getParameter("num"));
@@ -10,6 +11,9 @@
 	//3. 해당글의 조회수를 1 증가 시킨다.
 	CafeDao.getInstance().addViewCount(num);
 	//4. 글 정보를 응답한다.
+	
+	// EL 로 읽어낼 모델을 dto 라는 키값으로 CafeDto 객체를 담는다. 
+	request.setAttribute("dto", dto);
 %>    
 <!DOCTYPE html>
 <html>
@@ -42,43 +46,39 @@
 		</colgroup>
 		<tr>
 			<th>글번호</th>
-			<td><%=dto.getNum() %></td>
+			<td>${dto.num }</td>
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><%=dto.getWriter() %></td>
+			<td>${dto.writer }</td>
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><%=dto.getTitle() %></td>
+			<td>${dto.title }</td>
 		</tr>
 		<tr>
 			<th>등록일</th>
-			<td><%=dto.getRegdate() %></td>
+			<td>${dto.regdate }</td>
 		</tr>
 	</table>
-	<div class="contents"><%=dto.getContent() %></div>
+	<div class="contents">${dto.content }</div>
 	<a href="list.jsp">목록 보기</a>
-	<%	
-		//세션 영역의 아이디를 읽어와본다. 만일 로그인 하지 않았으면 null 이다.
-		String id=(String)session.getAttribute("id");
-	%>
 	<%-- 
 		글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
 		즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
 	--%>
-	<%if(dto.getWriter().equals(id)){ %>
-		<a href="private/updateform.jsp?num=<%=dto.getNum() %>">
+	<c:if test="${dto.writer eq id }">
+		<a href="private/updateform.jsp?num=${dto.num }">
 			수정
 		</a>
 		<a href="javascript:deleteConfirm()">삭제</a>
-	<%} %>
+	</c:if>
 </div>
 <script>
 	function deleteConfirm(){
 		var isDelete=confirm("글을 삭제 하시 겠습니까?");
 		if(isDelete){
-			location.href="private/delete.jsp?num=<%=dto.getNum() %>";
+			location.href="private/delete.jsp?num=${dto.num}";
 		}
 	}
 </script>
