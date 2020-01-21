@@ -34,6 +34,7 @@
 		<li><a href="jstl/test01.jsp">JSTL 테스트</a></li>
 		<li><a href="jstl/test02.jsp">JSTL 테스트2</a></li>
 		<li><a href="jstl/test03.jsp">JSTL 테스트3</a></li>
+		<li><a href="jstl/test04.jsp">JSTL 테스트4</a></li>
 	</ul>
 </div>
 </body>
