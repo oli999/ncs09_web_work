@@ -36,6 +36,7 @@
 		<li><a href="jstl/test03.jsp">JSTL 테스트3</a></li>
 		<li><a href="jstl/test04.jsp">JSTL 테스트4</a></li>
 		<li><a href="fortune">MVC 테스트 (오늘의 운세)</a></li>
+		<li><a href="cafe/list.nhn">MVC 카페글 목록보기</a></li>
 	</ul>
 </div>
 </body>
